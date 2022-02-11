@@ -2,8 +2,7 @@
 
 ## What is the software system, and what does it do?
 
-Taken from the main repo:
-
+Taken from the main repository:
 *FirebaseUI React Components provides React Wrappers on top of the Firebase UI Web library and notably Firebase UI Auth.*
 
 *FirebaseUI Auth provides a drop-in auth solution that handles the UI flows for signing in users with email addresses and passwords, and Identity Provider Sign In using Google, Facebook and others. It is built on top of Firebase Auth.*
