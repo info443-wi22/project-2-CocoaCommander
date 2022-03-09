@@ -73,4 +73,11 @@ We would suggest that the architectural style that is found throughout this code
 
 
 ## System Improvement
-`TODO`
+
+### Refactoring
+
+### Bug Fix
+
+### Feature Improvement
+
+### Testing
