@@ -71,13 +71,25 @@ We would suggest that the architectural style that is found throughout this code
     - The classes do not depend on things that they don’t need; only takes in needed parameter to run the code
     - Does not contain unnecessary code or redundancy
 
-
 ## System Improvement
 
 ### Refactoring
+1. The `tearDown()` function is defined multiple times with both the same and different definitions.
+    - `tearDown()` under the `page` folder only refers to one implementation. Additionally, all tests under the page folder have a dependency on the `pageTestHelper` module, so `tearDown` will be extracted to that place.
+2. Testing modules are in the same folder as the modules that they are testing
+    - These should be moved to a separate testing folder so that developers will have an easier time finding the main code file they want to edit rather than opening up both the test file and the non-test file if they are unable to read the full filename.
+3. `dialog.js`'s `showDialog()` function is extremely long with in-line comments describing most of the functionality
+    - A lot of this functionality can be extracted into helper functions that are more descriptibe of what the code actually does.
+4.
+5.
+6.
+7.
 
 ### Bug Fix
 
 ### Feature Improvement
 
 ### Testing
+Each component in FirebaseUI-Web is paired with a testing file. In the case that we will examine for this report, common.js contains some functions that are neither mentioned nor tested for in common_test.js, namely `listenForInputEvent()`, `listenForEnterEvent()`, `listenForFocusInEvent()`, `listenForFocusOutEvent()`, and `listenForActionEvent()`. Perhaps these functions were tested from a different library since there are `@template` tags in the function comments, which lead me to believe that these functions were copy pasted from somewhere else, but that also begs the question, "if these functions were taken from somewhere else, why not just import them and provide more abstraction?" To that, I have no idea.
+
+Note: theoretically, this is how testing should work, but due to a slew of deprecated packages that I can not figure out, we have elected to avoid implementing additonal unit tests as there is no way to validate any additional tests.
