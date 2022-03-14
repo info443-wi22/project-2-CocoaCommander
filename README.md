@@ -120,6 +120,14 @@ We would suggest that the architectural style that is found throughout this code
 7.
 
 ### Bug Fix
+We also took on issue [issue #702](https://github.com/firebase/firebaseui-web/issues/702), which is labeled as 'internal-bug-filed' and 'type: feature request'. This issue addresses the problem of the inability to sign in with a LinkedIn account. The problem with this addition of authentication is that Firebase only supports four federated Identity Providers: Google, Facebook, Twitter, and GitHub, which makes it difficult to incorporate other platforms that users can sign on to and create an account.
+
+We found a [stackoverflow post](https://stackoverflow.com/questions/40040025/has-someone-managed-to-implement-a-linkedin-login-with-firebase-on-ios) where someone asks if anyone has managed to implement a LinkedIn login feature with Firebase. The top answer led us to an [article](https://firebase.googleblog.com/2016/10/authenticate-your-firebase-users-with.html) which gives steps on how one might do this.
+
+Although it was difficult to accurately pinpoint how we can apply this to our system, we still attempted it. First, we found the files where the system initializes other login providers, which was in app.js and widget.html in the demo/public folder. Both of these files show to be the beginning construction in the user interface because it contains initializations of the other providers and email signup options. Then, in common.js under the same public folder contains methods that help build the login systems in the app and widget, like getEmailSignInMethod().
+
+In this file, we added the steps that were provided in the article, though the result of these steps may not align with the other methods because it returns an HTML piece instead of a basic configuration statement like in the email method. However, publishing these steps could be helpful to future developers because the end result is with the common methods and they won't have to spend time scouring the internet for other solutions.
+
 
 ### Feature Improvement
 
