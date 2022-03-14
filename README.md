@@ -24,9 +24,29 @@ In simpler terms, FirebaseUI helps allow componts to be created within a web-app
 FirebaseUI Web is an extension / addition to Firebase that was created by Google. As this is an open source codebase, anybody can contribute to it. With that being said, all submissions that are made, even those that are project members, require review. They use GitHub pull requests for this purpose.
 
 ## Development View
-
+### System Diagram
 ![Diagram of system components](DevView.png)
-This diagram represents the basic file structure of the codebase, not sure about server calls since they are locked behind Google implementations of certain imports and exports; There are many more modules under the folder, @Harper I will add those in for the final draft if there's not enough detail in the current diagram (Ryan)
+This diagram represents the basic file structure of the codebase, which is also how the processes are generally structured.
+
+#### System Components/Source Code Structure
+| Component                    | Description                                                                                                                                                         |
+|------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| firebaseui-web               | Main folder for modules. Imports google closure library for `goog` namespace (general javascript library for fast compilation of commonly used functions + testing) |
+| externs                      | namespace for closure compiler to access + minify + speed up js compilation                                                                                         |
+| data                         | module specifically for fast country lookup by phone number                                                                                                         |
+| data/country.js              | implements prefix trie for previously stated purpose                                                                                                                |
+| ui                           | folder for ui components                                                                                                                                            |
+| ui/mdl.js                    | global style and interactions for ui components                                                                                                                     |
+| ui/page                      | all components related to page functionality                                                                                                                        |
+| ui/element                   | all components related to element functionality, deals with binding elements and their handlers                                                                     |
+| widgets                      | core components and functionality                                                                                                                                   |
+| widgets/handler              | event handlers for widgets                                                                                                                                          |
+| widgets/firebaseuihandler.js | The authentication handler that implements the interface used for IAP integration                                                                                   |
+| widgets/authui.js            | FirebaseUI App Builder                                                                                                                                              |
+| utils                        | common helper functions                                                                                                                                             |
+| testing                      | Testing package for all components, individual testing files are exported from their respective folders and imported here                                           |
+
+
 
 ### Testing Strategy
 Each module is paired with a testing file under the moniker of `[module name]_test.js` or similar. It appears that all these tests are imported into the testing folder, where they are tested as aggregates of the main component that they are a part of. Running `npm run test` works for testing.
