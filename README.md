@@ -48,15 +48,25 @@ In this activity, we create an "attack tree" which represents the threat model f
 
 **Goal**: Obtain user account details to bypass the user interface
 1. Extract information from the database itself
+
 1.1 Access the firebase database directly by guessing/cracking user passwords or security passwords that allow the attacker to bypass their firebase login account.
+
 1.2 Access firebase login from someone who is an administrator of the database by bribing them or tricking them to reveal those details.
+
 2. Extract information from the user interface
+
 2.1 Track a user's computer keys to reveal their login.
+
 2.2 Send a spam email to a user to track their computer screen and activity.
+
 2.3 Create a fake website that looks like the UI and send the URL to users to trick them into giving their login.
+
 3. Extract information from outside the firebase and UI login interface
+
 3.1 Call/email a staff member of the system, or meet them in person, to trick them to reveal details.
+
 3.2 Get access to the administrator's or staff's computer to either find login details or automatically bypass the UI through the "saved passwords" feature on browsers.
+
 3.3 Hack the Google, Facebook, Twitter, or Github database if the user logs in through those avenues.
 
 #### 2. Assess the Risks
