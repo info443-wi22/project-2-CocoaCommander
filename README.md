@@ -77,8 +77,9 @@ We would suggest that the architectural style that is found throughout this code
 1. The `tearDown()` function is defined multiple times with both the same and different definitions.
     - `tearDown()` under the `page` folder only refers to one implementation. Additionally, all tests under the page folder have a dependency on the `pageTestHelper` module, so `tearDown` will be extracted to that place.
 2. Testing modules are in the same folder as the modules that they are testing
-    - These should be moved to a separate testing folder so that developers will have an easier time finding the main code file they want to edit rather than opening up both the test file and the non-test file if they are unable to read the full filename
-3.
+    - These should be moved to a separate testing folder so that developers will have an easier time finding the main code file they want to edit rather than opening up both the test file and the non-test file if they are unable to read the full filename.
+3. `dialog.js`'s `showDialog()` function is extremely long with in-line comments describing most of the functionality
+    - A lot of this functionality can be extracted into helper functions that are more descriptibe of what the code actually does.
 4.
 5.
 6.
