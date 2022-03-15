@@ -148,8 +148,12 @@ Although it was difficult to accurately pinpoint how we can apply this to our sy
 
 In this file, we added the steps that were provided in the article, though the result of these steps may not align with the other methods because it returns an HTML piece instead of a basic configuration statement like in the email method. However, publishing these steps could be helpful to future developers because the end result is with the common methods and they won't have to spend time scouring the internet for other solutions.
 
-
 ### Feature Improvement
+The feature improvement we chose to do is [issue #908](https://github.com/firebase/firebaseui-web/issues/908). This issue addresses during account creation when using firebaseui-web, only a minimum of 6 characters with a mix of letters and numbers are needed to create a password. However, the requirements are too simple and would not be able to safely secure the user's account. Thus, the person who proposed this issue wanted to be able to change the minimum password requirements to at least 14 characters or to any amount.
+
+Though it was tricky as to find exactly where the validation of the password is at, the organization of folders in the firebaseui-react is really clear. We are able to pinpoint where the problem might be located at, which is the validation of the password field. This is located in the javascript folder, then the ui folder, under the element folder and is called 'newPassword.js'. It would be in the newPassword file because it's where the password is created as and it's when the system determines if the password fits the criteria or not.
+
+Since this is an element that have its own set of rules that's declared on that javascript file, it's where we made the changes and added another additional rule that validates it. If the length of the password input is 14 characters or more, the password is accepted and no exception is thrown. That constant length value could also be changed by the developers if they don't want that specific number.
 
 ### Testing
 Each component in FirebaseUI-Web is paired with a testing file. In the case that we will examine for this report, common.js contains some functions that are neither mentioned nor tested for in common_test.js, namely `listenForInputEvent()`, `listenForEnterEvent()`, `listenForFocusInEvent()`, `listenForFocusOutEvent()`, and `listenForActionEvent()`. Perhaps these functions were tested from a different library since there are `@template` tags in the function comments, which lead me to believe that these functions were copy pasted from somewhere else, but that also begs the question, "if these functions were taken from somewhere else, why not just import them and provide more abstraction?" To that, I have no idea.
