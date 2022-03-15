@@ -145,7 +145,8 @@ After looking at both the codebase and at the file structures as a whole, we wer
     - A lot of this functionality can be extracted into helper functions that are more descriptibe of what the code actually does.
 4. Within the file `phonesigninfinish.js` there are multiple redudant comments. 
     - When reading the code itself, within the function used for on code verification failure there are multiple comments that read `// Close dialog.`.  `component.dismissDialog()` is relaying the information needed to understand that `.dismissDialog()`is doing just that. Although simple, it helps increase the code readability in this code chunk.
-5.
+5. `common.js` in the demo/public folder has two functions that are basically identical to one another, where the check the status of its configuration 'true' or 'false'
+    - `getStatus(type)` reduces redundant code and this function is executed twice in `widget.html`, which takes in a string of either `adminRestrictedOperationStatus` or `disableEmailSignUpStatus` and returns a boolean for whether the configuration is disabled or not.
 6.
 7.
 
