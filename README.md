@@ -115,16 +115,17 @@ After looking at both the codebase and at the file structures as a whole, we wer
 
 ### Single Responsibility Principle
 - Every class only has one responsibility.
-  - Each module is separated from each other and have one purpose; UI components, logic functions, authentication and database screens, etc
-  - Modules are separated in different files with different names and are grouped together based on their type of purpose(“testing” folder have files that test the code)
-### Open-closed principle
-- Software entities are open for extension but closed for modification
-    - Allows users to use the class for firebase authentication while allowing users to customize its UI
-    - The initial code should not be modified but could be utilized or extended for other purposes that fulfills something else
+  - Each module is organized and separated from each other; files are organized in folders that corresponds to their individual task. In the javascript folder, where the codes are located at, there's the ui, data, externs, testing, utils, widget folder that contains components that corresponds to it. For example, the "testing" folder contain elements used to test each specific functions.
+  - The components themselves are also labeled differently and have one purpose. For example, in the "ui" folder, in the "elements" folder, it contains components like `newPassword.js` that contains getting the value of the new password, initializing it, validating it, and other functions related to creating a "new" password.
 ### Interface Segregation Principle
 - Different client-specific interfaces, rather than one general purpose interface
-    - The classes do not depend on things that they don’t need; only takes in needed parameter to run the code
-    - Does not contain unnecessary code or redundancy
+    - The classes do not depend on things that they don’t need; only takes in needed parameter to run the code. One of the example is in the javascript folder, ui folder, in the pages components where multiple types of passwords are initialized; `password`, `passwordrecovery`, `passwordreset`, `passwordsignup`, etc. All of them inherits from `firebaseui.auth.ui.page.Base` class, but passes through different amount of parameters, just depending on what is needed in that specific component. In `passwordreset.js`, it uses `email`, `onSubmitClick` and `opt_domhelper`, while `passwordRecovery.js` uses 3 more parameters than it.
+    - Passing only needed parameters allows the code to be less redundant and increases readability for other developers. It also allows the code to be more easily understood.
+### Open-closed principle
+- Software entities are open for extension but closed for modification
+    - The initial code should not be modified but could be utilized or extended for other purposes that fulfills something else; some of the ui elements inherits methods and properties from the `base.js` located in the ui pages folder to create its own class with more methods and properties.
+    - Some methods in the ui elements class require similar properties and methods. So inheriting these data reduces the redundancy of the files.
+    - The parent class that's used from is an abstract and so does not allow developers working in other files to modify the content of the `base.js` file as it might disrupt and break the whole algorithm.
 ### Dependency Inversion Principle
 - High level modules should not depend on low modules and vice versa; both rely on abstractions
     - The demo/public/`common.js` file has helpful methods that are defind for the widgets, while not depending on its parent `app.js`
