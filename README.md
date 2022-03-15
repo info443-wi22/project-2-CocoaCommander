@@ -98,17 +98,18 @@ For the last action we identified in the attack tree, we think this is the least
 ## Styles/Patterns Used
 
 ### Identifying Architectural Style
-We would suggest that the architectural style that is found throughout this code base would have to be a Flux architectural style. Looking into the flow of information within the different components, we found that there is a unidirectional flow of information, as it will flow in one direction. The components of the codebase build off of eachother but will only be taking in the necessary parameters to complete the function that they are asked to complete. As this will be dealing with user authentication, there will be containment implemented to add a level of security to the data being used. 
+We would suggest that the architectural style that is found throughout this code base would potentially be a Flux or MVC (done right) architectural style. Looking into the flow of information within the different components, we found that there is a unidirectional flow of information, as it will flow in one direction. The components of the codebase build off of eachother but will only be taking in the necessary parameters to complete the function that they are asked to complete. As this will be dealing with user authentication, there will be containment implemented to add a level of security to the data being used. 
+
+After looking at both the codebase and at the file structures as a whole, we were able to find **dispatcher.js** which dispatches the FirebaseUI widget operation to the correct handler. This led us to making our debate of the potential architectural style. The other potential option we were leaning towards was MVC (done right) as it also has a unidirectional flow of information. The presence of a dispatcher and lack of controller(s) was another factor to our decision. Although, we also acknowledged that there was a presence of a **utils** folder within the codebase. Taking **stores.js** as a specific file within the folder, it has the utils for storing FirebaseUI data and serves as a store (a place data can be read out from).
 
 ### Design Pattern and Explanation 
-- Adapter intent:
-    - **FirebaseUiHandler**: takes a configuration object that specifies the tenants and providers for user authentication 
 - Proxy Pattern:
-    - Found in the API reference of the FirebaseUIHandler 
-- Composite Pattern:
-    - Found when configuring sign-in providers
-- Strategy Pattern:
-    - Found within phoneconfirmationcodetesthelper.js
+    - **FirebaseUiHandler.js** takes a configuration object that specifies the tenants and providers for user authentication. As there are multiple providers a user can be provided with to login, it will be enabling those that are chosen to authenticate. In short, the sign in options used will be based on auth.tenantId. The solution that lets the other functions have access to the specific tenantId, will be what happens in the selectTenant function. The function takes in 2 parameters, one of which is a configuration object (projectConfig)  and the other is the tenant IDs (tenantIds) to select from. It’ll return the selected tenant and providers enabled for the tenant.
+- Dispatcher Pattern:
+    - **Dispatcher.js** dispatches the FirebaseUI widget operation to the correct handler. With there being countless widget operations that can be done, it’ll make it easier to make new functions or implement new things by the use of loose coupling so widgets don’t have to call each other directly. dispatcher.dispatchOperation specifically will be dispatching the operation to the corresponding handler taking in the FirebaseUI instance (app) and the container element or query selector (e). It’ll be shared between pieces of code that need to communicate in one way or another.
+- State Pattern:
+    - **phoneconfirmationcode.js** binds handler for phone confirmation UI element. When sending a confirmation code to a number, there are possibilities of the user themselves not making the request for the code. This will check if the given code matches the original code that was sent to ensure that the user has access to it. Based on the code that is imputed, the input will be checked and has a state as to whether this input is true or not given the instance.
+    - **emailchangerevoke.js** handles the UI component for the email revocation page. When wanting to do a password reset, there are links that are sent to users to be able to do so. When a reset link is sent out, the user will no longer be able to log into their account until their password is reset. This file will do just that, it’ll make sure that states are set correctly so a user can reset their password. Looking at the disposeInternal() function, it’ll set the states of the continue click and rest password click to null. This’ll be dependent as to whether or not the user reset their password.
 
 ## Architectural Assessment
 
