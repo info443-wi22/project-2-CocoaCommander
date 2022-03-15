@@ -148,8 +148,8 @@ After looking at both the codebase and at the file structures as a whole, we wer
     - When reading the code itself, within the function used for on code verification failure there are multiple comments that read `// Close dialog.`.  `component.dismissDialog()` is relaying the information needed to understand that `.dismissDialog()`is doing just that. Although simple, it helps increase the code readability in this code chunk.
 5. `common.js` in the demo/public folder has two functions that are basically identical to one another, where the check the status of its configuration 'true' or 'false'
     - `getStatus(type)` reduces redundant code and this function is executed twice in `widget.html`, which takes in a string of either `adminRestrictedOperationStatus` or `disableEmailSignUpStatus` and returns a boolean for whether the configuration is disabled or not.
-6.
-7.
+6. `resend.js` had a mysterious variable name in used as local variables in two different locations one after the other.
+    - Both were changed to descriptive variable names to account for this, the first was named `countdownToResend` and the second was names `linkToResend` to be more self described.
 
 ### Bug Fix
 We also took on issue [issue #702](https://github.com/firebase/firebaseui-web/issues/702), which is labeled as 'internal-bug-filed' and 'type: feature request'. This issue addresses the problem of the inability to sign in with a LinkedIn account. The problem with this addition of authentication is that Firebase only supports four federated Identity Providers: Google, Facebook, Twitter, and GitHub, which makes it difficult to incorporate other platforms that users can sign on to and create an account.
