@@ -127,12 +127,12 @@ After looking at both the codebase and at the file structures as a whole, we wer
     - Does not contain unnecessary code or redundancy
 ### Dependency Inversion Principle
 - High level modules should not depend on low modules and vice versa; both rely on abstractions
-    - The class where the common methods are for the widgets do not depend depend on the main page methods
-    - Both classes and their methods are called in HTML files for the UI which could be considered the abstract interface
+    - The demo/public/`common.js` file has helpful methods that are defind for the widgets, while not depending on its parent `app.js`
+    - Both classes and their methods are called in `widget.hmtl` for the UI which could be considered the abstract interface
 ### Likov Substitution Principle
 - Objects should be replaceable with their subtypes without altering the correctness of the program
-    - In the UI config interface, it utilizes a subtype of fake provider IDs and it doesn't break the system
-    - This mean the system uses the interface for common behavior (signatures).
+    - `widget.html` has a UI config interface which utilizes a subtype of ID tokens credentials for a provider and it doesn't break the system. This can be found on line 41
+    - This mean the system uses the interface for common behavior, substituting a common signature of ID with a more abstract object.
 
 ## System Improvement
 
