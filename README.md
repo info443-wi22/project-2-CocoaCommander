@@ -125,6 +125,14 @@ After looking at both the codebase and at the file structures as a whole, we wer
 - Different client-specific interfaces, rather than one general purpose interface
     - The classes do not depend on things that they don’t need; only takes in needed parameter to run the code
     - Does not contain unnecessary code or redundancy
+### Dependency Inversion Principle
+- High level modules should not depend on low modules and vice versa; both rely on abstractions
+    - The class where the common methods are for the widgets do not depend depend on the main page methods
+    - Both classes and their methods are called in HTML files for the UI which could be considered the abstract interface
+### Likov Substitution Principle
+- Objects should be replaceable with their subtypes without altering the correctness of the program
+    - In the UI config interface, it utilizes a subtype of fake provider IDs and it doesn't break the system
+    - This mean the system uses the interface for common behavior (signatures).
 
 ## System Improvement
 
